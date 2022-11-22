@@ -1,0 +1,19 @@
+SQL;
+    - Decide on a database platform
+        Elephant?
+    - Decide on tables we want to build
+        - Name
+        - Title
+        - Link
+        - Description
+        - Tags/categories
+    - Initial data to build and test tables
+        - Maybe try out in db fiddle
+    - Setup database and make sure we have the link to put into our .env file
+    - Decide if we're using one database or one on each machine
+        - Probably one database - check security issues
+
+Routes - code in VS Code;
+    - Models folder
+    - Routes folder 
+    - .env file
