@@ -1,13 +1,13 @@
 SQL;
     - Decide on a database platform
-        Elephant?
-    - Decide on tables we want to build
+        Elephant - Done
+    - Decide on tables we want to build - Done
         - Name
         - Title
         - Link
         - Description
         - Tags/categories
-    - Initial data to build and test tables
+    - Initial data to build and test tables - Done
         - Maybe try out in db fiddle
     - Setup database and make sure we have the link to put into our .env file
     - Decide if we're using one database or one on each machine
@@ -15,5 +15,15 @@ SQL;
 
 Routes - code in VS Code;
     - Models folder
+        - Get all links
+        - Get links by tags
+        - Post a new entry
+        - Edit an entry by ID
+        - Delete an entry by ID
     - Routes folder 
+        - all links - GET request
+        - links by tags - GET request - tags as query parameters?
+        - Post request
+        - Patch request - ID in the URL
+        - Delete request - ID in the URL
     - .env file
