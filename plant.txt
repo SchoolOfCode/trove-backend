@@ -21,9 +21,9 @@ Routes - code in VS Code;
         - Edit an entry by ID
         - Delete an entry by ID
     - Routes folder 
-        - all links - GET request
+        - all links - GET request - Done
         - links by tags - GET request - tags as query parameters?
-        - Post request
-        - Patch request - ID in the URL
+        - Post request - Needs testing
+        - Patch request - ID in the URL - Stretch goal
         - Delete request - ID in the URL
     - .env file
