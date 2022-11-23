@@ -8,7 +8,7 @@ async function getAllPosts() {
 
 async function getPostByTag(tag) {
   const results = await query(
-    'SELECT * FROM posts LEFT JOIN tags_table ON posts.post_id=tags_table.post_id WHERE tags_table.tags=$1;',
+    'SELECT * FROM posts LEFT JOIN tags_table ON posts.post_id=tags_table.post_id WHERE tags_table.tag=$1;',
     [tag]
   );
   const postArr = results.rows;
@@ -32,7 +32,7 @@ async function addNewPost(post) {
   const newTags = await Promise.all(
     post.tags.map(async (tag) => {
       let update = await query(
-        'INSERT INTO tags_table (tags, post_id) VALUES ($1, $2) RETURNING *',
+        'INSERT INTO tags_table (tag, post_id) VALUES ($1, $2) RETURNING *',
         [tag, newPostID]
       );
       return update.rows[0];
