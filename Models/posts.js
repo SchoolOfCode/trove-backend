@@ -1,15 +1,20 @@
 const { query } = require("../db/index.js");
 
-async function getAllLinks() {
+async function getAllPosts() {
     const results = await query('SELECT * FROM posts');
     const linksObj = results.rows;
     return linksObj;
 };
 
 async function addNewPost (post) {
-    const update = await query(`INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`, 
+    const update = await query('INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;', 
     [post.author, post.title, post.thumbnail, post.summary, post.date_posted, post.url, post.tags]);
-    const addPost = update.rows[0];
+    const newPostID = update.rows[0].post_id
+    const newTags = await Promise.all(post.tags.map(async (tag) => { let update =
+        await query('INSERT INTO tags_table (tags, post_id) VALUES ($1, $2) RETURNING *', [tag, newPostID])
+        return update.rows[0];
+    }))
+    const addPost = [update.rows[0], newTags];
     return addPost;
 }
 
@@ -20,4 +25,4 @@ async function deletePostByID (id) {
     return deleteConfirm; 
 }
 
-module.exports = {getAllLinks, addNewPost, deletePostByID}
+module.exports = {getAllPosts, addNewPost, deletePostByID}
