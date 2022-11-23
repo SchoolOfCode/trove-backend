@@ -7,9 +7,8 @@ async function getAllLinks() {
 };
 
 async function addNewPost (post) {
-    console.log(post.tags);
-    const update = await query(`INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, ${post.tags}) RETURNING *;`, [`${post.author}, ${post.title}, ${post.thumbnail}, ${post.summary}, ${post.date_posted}, ${post.url}, ${post.tags}`]);
-    console.log("----> New post query added")
+    const update = await query(`INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`, 
+    [post.author, post.title, post.thumbnail, post.summary, post.date_posted, post.url, post.tags]);
     const addPost = update.rows[0];
     return addPost;
 }
