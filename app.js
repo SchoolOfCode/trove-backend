@@ -19,6 +19,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 app.use('/api/posts', postsRouter);
+pap.use(cors('*'));
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
