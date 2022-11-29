@@ -6,14 +6,15 @@
 
 */
 
-const request = require('supertest');
-const app = require('../app');
-const expect = require('jest');
-const pool = require('../db/index.js');
+import request from 'supertest';
+import { expect } from '@jest/globals';
+import { app } from '../app';
+import { pool } from '../db/index.js';
 
 test('GET /posts', async function () {
-  const response = await request(app).get('/posts');
-  expect.body.toStrictEqual({
+  const response = await request(app).get('/api/posts');
+  console.log(response.body);
+  expect(response.body).toStrictEqual({
     success: true,
     payload: expect.any(Array),
   });

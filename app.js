@@ -1,10 +1,10 @@
-const express = require('express');
-const morgan = require('morgan');
-const router = express.Router();
-const cors = require('cors');
+import express from 'express';
+import morgan from 'morgan';
+// import router from express.Router();
+import cors from 'cors';
 
-const app = express();
-const postsRouter = require('./Routes/posts.js');
+export const app = express();
+import postsRouter from './Routes/posts.js';
 
 const port = process.env.PORT || 3005;
 
@@ -18,5 +18,3 @@ app.use('/api/posts', postsRouter);
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
-
-module.exports = { app };

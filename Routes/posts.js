@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const {
+import express from 'express';
+import { Router } from 'express';
+const router = Router();
+import {
   getAllPosts,
   getPostByTag,
   addNewPost,
   deletePostByID,
-} = require('../Models/posts');
+} from '../Models/posts';
 
 //GET route checks for search query and runs getPostByTag
 router.get('/', async function (req, res) {
@@ -32,4 +33,4 @@ router.delete('/:id', async function (req, res) {
   console.log(res.body);
 });
 
-module.exports = router;
+export default router;

@@ -1,14 +1,14 @@
-const { query } = require('../db/index.js');
+import { query } from '../db/index.js';
 
 //GET's all data from posts-table
-async function getAllPosts() {
+export async function getAllPosts() {
   const results = await query('SELECT * FROM posts');
   const linksObj = results.rows;
   return linksObj;
 }
 
 //GET's all posts from posts-table with specified tag
-async function getPostByTag(tag) {
+export async function getPostByTag(tag) {
   const results = await query(
     'SELECT * FROM posts LEFT JOIN tags_table ON posts.post_id=tags_table.post_id WHERE tags_table.tag=$1;',
     [tag]
@@ -18,7 +18,7 @@ async function getPostByTag(tag) {
 }
 
 //ADD's new post to the posts-table and ADD's all relevant tags to tags-table with the corresponding post ID
-async function addNewPost(post) {
+export async function addNewPost(post) {
   const update = await query(
     'INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;',
     [
@@ -46,7 +46,7 @@ async function addNewPost(post) {
 }
 
 //DELETE's specified post from posts-table and corresponding tags from tags-table
-async function deletePostByID(id) {
+export async function deletePostByID(id) {
   const deletedTags = await query(
     'DELETE FROM tags_table WHERE post_id = $1 RETURNING *;',
     [id]
@@ -58,5 +58,3 @@ async function deletePostByID(id) {
   const deleteConfirm = [deletedPost, deletedTags];
   return deleteConfirm;
 }
-
-module.exports = { getAllPosts, getPostByTag, addNewPost, deletePostByID };
