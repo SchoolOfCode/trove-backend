@@ -8,13 +8,6 @@ const postsRouter = require('./Routes/posts.js');
 
 const port = process.env.PORT || 3005;
 
-/* const { query } = require ("./db/index.js");
-const testRoute = router.get("/", async function (req, res) {
-    const results = await query('SELECT * FROM posts');
-    res.json({success:true, payload: results.rows});
-    console.log(res);
-}) */
-
 app.use(cors('*'));
 app.use(morgan('dev'));
 app.use(express.static('public'));
