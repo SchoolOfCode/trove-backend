@@ -14,11 +14,11 @@ router.get('/', async function (req, res) {
   if (req.query.search !== undefined) {
     const posts = await getPostByTag(req.query.search);
     res.json({ success: true, payload: posts });
-  }
+  } else {
   const posts = await getAllPosts();
   res.json({ success: true, payload: posts });
   console.log(res.body);
-});
+}});
 
 // Routes to the new post function
 router.post('/', async function (req, res) {
