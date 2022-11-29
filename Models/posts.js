@@ -49,11 +49,11 @@ async function addNewPost(post) {
 async function deletePostByID(id) {
   const deletedTags = await query(
     'DELETE FROM tags_table WHERE post_id = $1 RETURNING *;',
-    [`${id}`]
+    [id]
   );
   const deletedPost = await query(
     'DELETE FROM posts WHERE post_id = $1 RETURNING *;',
-    [`${id}`]
+    [id]
   );
   const deleteConfirm = [deletedPost, deletedTags];
   return deleteConfirm;
