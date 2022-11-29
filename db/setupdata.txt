@@ -1,12 +1,4 @@
-******* This file contains data used to create the initial SQL tables in the remote database *******
-
-******* This will only put data into the posts table. Tags will need to be added seperately using the relevant post_id *******
-
-CREATE TABLE tags_table (
-    tag_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    tag TEXT,
-    post_id INTEGER REFERENCES posts
-    );
+***** This file contains data used to create the initial SQL tables in the remote database *****
 
 CREATE TABLE posts (
   post_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -18,6 +10,16 @@ CREATE TABLE posts (
   url VARCHAR,
   tags TEXT[]
   );
+
+CREATE TABLE tags_table (
+    tag_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    tag TEXT,
+    post_id INTEGER REFERENCES posts
+    );
+
+***** The below can be used in your SQL database directly but will only put data into the posts table. Tags will need to be added seperately using the relevant post_id.
+
+Alternatively you can use the JSONdata file to send requests through postman or a similar app and data will be added to both tables in the same request. This will need to be done one at a time, and the app will need to be running (npm run dev).  *****
 
 INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags)
 VALUES (
@@ -105,7 +107,6 @@ VALUES (
                 'JavaScript'
             ]
         ),
-
     
 (
             'author': 'Ariah-Lee Hall',
