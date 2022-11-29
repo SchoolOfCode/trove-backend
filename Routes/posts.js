@@ -6,7 +6,7 @@ import {
   getPostByTag,
   addNewPost,
   deletePostByID,
-} from '../Models/posts';
+} from '../Models/posts.js';
 
 //GET route checks for search query and runs getPostByTag
 router.get('/', async function (req, res) {
