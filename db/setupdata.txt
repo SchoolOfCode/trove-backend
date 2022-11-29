@@ -1,0 +1,149 @@
+***** This file contains data used to create the initial SQL tables in the remote database *****
+
+CREATE TABLE posts (
+  post_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  author VARCHAR ( 50 ),
+  title VARCHAR ( 50 ),
+  thumbnail VARCHAR,
+  summary VARCHAR,
+  date_posted DATE,
+  url VARCHAR,
+  tags TEXT[]
+  );
+
+CREATE TABLE tags_table (
+    tag_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    tag TEXT,
+    post_id INTEGER REFERENCES posts
+    );
+
+***** The below can be used in your SQL database directly but will only put data into the posts table. Tags will need to be added seperately using the relevant post_id.
+
+Alternatively you can use the JSONdata file to send requests through postman or a similar app and data will be added to both tables in the same request. This will need to be done one at a time, and the app will need to be running (npm run dev).  *****
+
+INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags)
+VALUES (
+    (
+            'Curt Smith',
+            'JavaScript For Beginners',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': ' POST Request Fom Node.js PostgreSQL',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=W6NZfCO5SIk&t=210s',
+            ARRAY ['JavaScript']
+    ),
+
+    (
+            'author': 'Kiane Gucher-Blackman',
+            'title': 'CSS Styling in React JS',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Learn how to apply CSS Styles in React JS. There are several approaches to applying CSS you should be aware of when you learn ReactJS',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=RYDXbp7vmjc',
+            ARRAY ['CSS','React', 'JavaSCript']
+    ),
+
+    (
+            'author': 'Steve Beecheno',
+            'title': ' Testing Node Server with SeperTest Jest',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Learn how to test a node.js HTTP server using Jest and Supertest.',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=FKnzS_icp20',
+            ARRAY [
+                'SuperTest',
+                'Jest'
+            ]
+    ),
+
+    (
+            'author': 'Ryan Donaghue',
+            'title': 'Test Driven Devlopment Cypress Jest',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Test-Driven Development (TDD) is a proven prevent bugs and improve the quality of your code - and it's fun! Learn the fundamentals of JavaScript testing in this beginner's tutorial. ',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=7N63cMKosIE',
+            ARRAY [
+                'Jest',
+                'Cypress'
+            ]
+         ),
+
+    (
+            'author': 'Ash-Lee McKenna',
+            'title': 'Full Stack Course',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Learn full-stack web development in this full course for beginners.',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=nu_pCVPKzTk',
+            ARRAY [
+                'JavaScript',
+                'CSS',
+                'Node'
+            ]
+        ),
+
+    (
+            'author': 'Jason Bacon',
+            'title': 'Python For Beginners',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Python tutorial for beginners show how to get started with Python quickly.',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=kqtD5dpn9C8&t=26s',
+            ARRAY [
+                'Python'
+            ]
+        ),
+
+    (
+            'author': 'Elijah-Lee Hall',
+            'title': 'TypeScript Tutorial',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'TypeScript Tutorial for Beginners. Learn TypeScript to write better large-scale JavaScript apps.',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=d56mG7DezGs',
+            ARRAY [
+                'Typescript',
+                'JavaScript'
+            ]
+        ),
+    
+(
+            'author': 'Ariah-Lee Hall',
+            'title': 'Fundamentals of Next.js',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Fundamentals of Next.js such as SSR & SSG, routing, data fetching, apis and more',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.youtube.com/watch?v=mTz0GXj8NN0',
+            ARRAY [
+                'Next',
+                'React',
+                'CSS'
+            ]
+        ),
+
+    (
+            'author': 'SOC',
+            'title': 'About us',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'About SOC',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://www.schoolofcode.co.uk/about/',
+            ARRAY [
+                'JavaScript'
+            ]
+        ),
+
+    (
+            'author': 'Jean Asus',
+            'title': 'FrameWork',
+            'thumbnail': 'https://static-cse.canva.com/blob/951430/1600w-wK95f3XNRaM.jpg',
+            'summary': 'Developing our new Systemic Design Framework',
+            'date_posted': '2022-10-20T23:00:00.000Z',
+            'url': 'https://medium.com/design-council/developing-our-new-systemic-design-framework-e0f74fe118f7',
+            ARRAY [
+                'React',
+                'Next',
+                'Npm'
+            ]
+    );

@@ -1,12 +1,14 @@
-const { query } = require('../db/index.js');
+import { query } from '../db/index.js';
 
-async function getAllPosts() {
+//GET's all data from posts-table
+export async function getAllPosts() {
   const results = await query('SELECT * FROM posts');
   const linksObj = results.rows;
   return linksObj;
 }
 
-async function getPostByTag(tag) {
+//GET's all posts from posts-table with specified tag
+export async function getPostByTag(tag) {
   const results = await query(
     'SELECT * FROM posts LEFT JOIN tags_table ON posts.post_id=tags_table.post_id WHERE tags_table.tag=$1;',
     [tag]
@@ -15,7 +17,8 @@ async function getPostByTag(tag) {
   return postArr;
 }
 
-async function addNewPost(post) {
+//ADD's new post to the posts-table and ADD's all relevant tags to tags-table with the corresponding post ID
+export async function addNewPost(post) {
   const update = await query(
     'INSERT INTO posts (author, title, thumbnail, summary, date_posted, url, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;',
     [
@@ -42,17 +45,16 @@ async function addNewPost(post) {
   return addPost;
 }
 
-async function deletePostByID(id) {
+//DELETE's specified post from posts-table and corresponding tags from tags-table
+export async function deletePostByID(id) {
   const deletedTags = await query(
     'DELETE FROM tags_table WHERE post_id = $1 RETURNING *;',
-    [`${id}`]
+    [id]
   );
   const deletedPost = await query(
     'DELETE FROM posts WHERE post_id = $1 RETURNING *;',
-    [`${id}`]
+    [id]
   );
   const deleteConfirm = [deletedPost, deletedTags];
   return deleteConfirm;
 }
-
-module.exports = { getAllPosts, getPostByTag, addNewPost, deletePostByID };
