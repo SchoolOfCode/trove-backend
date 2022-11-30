@@ -41,7 +41,7 @@ The PORT is setup to default to 3005. If you wish to change this you can use the
 `PORT=`
 
 There are some setup files in the db folder. Currently no setup scripts are in place, but these are planned for the future.
-Currently you need to manually setup your database but the SQL queries for these are provided in the db folder.
+You need to manually setup your database but the SQL queries for these are provided in the db folder.
 
 ## API Reference
 
