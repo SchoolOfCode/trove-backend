@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node -r dotenv/config server.js",
     "dev": "nodemon -r dotenv/config server.js",
-    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node -r dotenv/config --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "jsdoc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
     "cors": "^2.8.5",
