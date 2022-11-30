@@ -1,6 +1,5 @@
 import express from 'express';
 import morgan from 'morgan';
-// import router from express.Router();
 import cors from 'cors';
 
 export const app = express();
