@@ -1,6 +1,56 @@
-## Trove
+<h1 align="center">Welcome to Trove!</h1>
 
-**App Overview**
+<p align="center">
+  <img src="public/trove-logo.jpg" alt="logo"/>
+</p>
+
+## App Overview
+
+This API is designed to store data for the Trove front end. It is currently in development so not everything is linked up but the code has been commented to show what links up and what doesn't.
+
+## Installation and Setup Instructions
+
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.
+
+Installation:
+
+`npm install`
+
+To Run Test Suite:
+
+`npm test`
+
+To run the app in dev mode:
+
+`npm run dev`
+
+To run the app:
+
+`npm start`
+
+## Setting up your .env file to link to your database
+
+You will need to link your database and setup the port in a .env file.
+
+In the .env file assign your database link to the following varaible:
+
+`POSTGRES_CONNECTION_URL=`
+
+The PORT is setup to default to 3005. If you wish to change this you can use the following variable in your .env file:
+
+`PORT=`
+
+There are some setup files in the db folder. Currently no setup scripts are in place, but these are planned for the future.
+Currently you need to manually setup your database but the SQL queries for these are provided in the db folder.
+
+## API Reference
+
+| Request                 | Parameter       | Type     | Request Body                                                  | Description                                          |
+| :---------------------- | :-------------- | :------- | :------------------------------------------------------------ | ---------------------------------------------------- |
+| GET /api/posts          | none            | none     | none                                                          | Gets all posts                                       |
+| GET /api/posts          | `?search='tag'` | `string` | none                                                          | Gets all posts with a specific tag                   |
+| POST /api/posts         | none            | none     | `{author, title, thumbnail, summary, date_posted, url, tags}` | Creates a new post in the posts table and tags table |
+| DELETE /api/posts/${id} | `id`            | `string` | none                                                          | Deletes post and associated tags by post id          |
 
 ## **App Tool Box**
 
